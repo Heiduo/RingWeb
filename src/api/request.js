@@ -5,26 +5,33 @@ import { showNotify } from 'vant'
 
 const mode = import.meta.env.MODE
 export const request = axios.create({
-  baseURL: mode === 'development' ? '/api/v0' : BASE_API,
+  // baseURL: mode === 'development' ? '/api/v0' : BASE_API,
+  // baseURL: '/api/v0',
+  baseURL: BASE_API,
 })
 
 request.interceptors.request.use(config => {
   config.data = config.data || {}
-  const token = getAppToken()
-  config.headers.Authorization = 'JWT ' + token
-  config.headers.token = token
-  config.headers['Content-Type'] = 'application/json'
-  Object.assign(config.data, {
-    token,
-    app_key: config.data.app_key || getAppKey(),
-    mac: config.data.mac || getAppMac(),
-  })
+  // const token = getAppToken()
+  // config.headers.Authorization = 'JWT ' + token
+  // config.headers.token = token
+  // config.headers['Content-Type'] = 'application/json'
+  // Object.assign(config.data, {
+  //   token,
+  //   app_key: config.data.app_key || getAppKey(),
+  //   mac: config.data.mac || getAppMac(),
+  // })
   return config
 })
 
 request.interceptors.response.use(res => {
+  // console.log('---------')
   const { data: resData, config } = res
+  // console.log(JSON.stringify(res))
+
   const { status, error_code, data, error_message } = resData
+  // console.log(JSON.stringify(resData))
+
   if (status) return resData
   if (error_code === 'I01A07') {
     logout()
@@ -39,6 +46,20 @@ export function postRequest(config, data) {
   const requestConfig = {
     data,
     method: 'post',
+    url: '',
+  }
+  if (typeof config === 'string') {
+    requestConfig.url = config
+  } else if (typeof config === 'object') {
+    Object.assign(requestConfig, config)
+  }
+  return request(requestConfig)
+}
+
+export function optionsRequest(config, data) {
+  const requestConfig = {
+    data,
+    method: 'options',
     url: '',
   }
   if (typeof config === 'string') {

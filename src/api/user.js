@@ -1,8 +1,8 @@
-import { postRequest } from './request'
+import {optionsRequest, postRequest} from './request'
 
 export const userApi = {
-// API_LOGIN: '/entrance/user/login',
-    API_LOGIN: '/sinklib/device/contact/wlist',
+API_LOGIN: 'sinklib/device/contact/wlist',
+    // API_LOGIN: 'user/contract/wlist/get/',
 }
 
 export function request_userLogin(data) {
@@ -10,4 +10,11 @@ export function request_userLogin(data) {
     url: userApi.API_LOGIN,
     data,
   })
+}
+
+export function request_userLogin_pre(data) {
+    return optionsRequest({
+        url: userApi.API_LOGIN,
+        data
+    })
 }

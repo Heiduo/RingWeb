@@ -27,13 +27,19 @@ export default defineConfig(({ command, mode }) => {
     },
     server: {
       host: '0.0.0.0',
+      cors:true,    //允许跨域
       proxy: {
         '/api/v0': {
+          // autoRewrite:true,
           target: BASE_ENV.api,
-          changeOrigin: true,
+          // target: 'http://test.aicaring.com',
+          changeOrigin: false,
+          ws:true,
           rewrite: (path) => {
             console.log('api', path)
+            // return path.replace('^/api/v0', '/api/v0')
             return path.replace('/api/v0', '')
+            // return path
           }
         }
       }
