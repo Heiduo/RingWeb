@@ -29,11 +29,12 @@ export default {
 		  app_getAppAndUserinfo(),
 		  app_getDeviceStatus()
 	  ]).then(([params,deviceInfo]) => {
-      const { mac } = deviceInfo
-      if (mac!=null){
+      const { deviceCode } = deviceInfo
+      console.log("deviceCode:"+deviceCode)
+      if (deviceCode!=null){
         login({
           ...params,
-          mac,
+          deviceCode,
         }).then(_ => {
           setTimeout(_ => {
             console.log(getAppMac())

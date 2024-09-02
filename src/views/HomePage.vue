@@ -18,7 +18,7 @@
           >
             <image-item
                 v-for="(item, index) in dataList"
-                :key="item.contact_url"
+                :key="item.contactUrl"
                 :data="item"
                 :index="index"
             />

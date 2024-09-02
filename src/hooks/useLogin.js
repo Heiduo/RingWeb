@@ -4,7 +4,7 @@ import { useUserStore } from '@/store'
 
 export function useLogin() {
   function login(params) {
-    const { app_key, mac } = params
+    const { app_key, deviceCode } = params
     const store = useUserStore()
     // console.log('0000')
     return request_userLogin(params).then(res =>{
@@ -14,12 +14,12 @@ export function useLogin() {
         // console.log('22222')
         const { token } = res.data
         setAppToken("token")
-        setAppMac(mac)
+        setAppMac(deviceCode)
         setAppKey(app_key)
         Object.assign(store.userinfo, {
           ...res.data,
           app_key,
-          mac,
+          deviceCode,
           token,
         })
         return res.data

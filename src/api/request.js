@@ -29,10 +29,10 @@ request.interceptors.response.use(res => {
   const { data: resData, config } = res
   // console.log(JSON.stringify(res))
 
-  const { status, error_code, data, error_message } = resData
+  const { code,status, error_code, data, error_message } = resData
   // console.log(JSON.stringify(resData))
 
-  if (status) return resData
+  if (code === 0) return resData
   if (error_code === 'I01A07') {
     logout()
   } else {

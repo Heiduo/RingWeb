@@ -74,18 +74,18 @@ export function useHomeData() {
   const loadFinished = computed(() => dataList.value.length>=0)
 
   function init() {
-    const params = app_getAppAndUserinfo()
+    // const params = app_getAppAndUserinfo()
     // console.log("params:"+params.app_key)
     loading.value = true
     const deviceInfo = app_getDeviceStatus()
-    const { mac } = deviceInfo
+    const { deviceCode } = deviceInfo
     login({
-      ...params,
-      mac,
+      // ...params,
+      deviceCode,
     }).then(_ => {
       // console.log("contacts:"+useUserStore().userinfo.contacts)
       dataList.value = useUserStore().userinfo.contacts
-      homeTitle.value = useUserStore().userinfo.name+"的二维码"
+      homeTitle.value = useUserStore().userinfo.nickname+"的二维码"
       // for (let i = 0; i <dataList.value.length; i++) {
       //   console.log("dataList"+i+":"+JSON.stringify(dataList.value[i]))
       // }

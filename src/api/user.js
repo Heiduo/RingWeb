@@ -1,8 +1,9 @@
 import {optionsRequest, postRequest} from './request'
 
 export const userApi = {
-API_LOGIN: 'sinklib/device/contact/wlist',
-    // API_LOGIN: 'user/contract/wlist/get/',
+// API_LOGIN: 'sinklib/device/contact/wlist',
+//     API_LOGIN: 'user/contract/wlist/get/',
+    API_LOGIN: 'devices/contact/wlist',
 }
 
 export function request_userLogin(data) {

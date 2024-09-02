@@ -53,7 +53,7 @@ export function app_getDeviceStatus(mac) {
     }else {
       deviceCode = getAppMac();
     }
-    let result = JSON.parse('{"mac":"'+deviceCode+'"}')
+    let result = JSON.parse('{"deviceCode":"'+deviceCode+'"}')
     console.log(result)
     return result
 

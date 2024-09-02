@@ -1,13 +1,13 @@
 <template>
   <section class="image-content">
     <div class="image-item">
-      <van-image width="50vw" height="50vw" :src="data.download_url" style="margin-top: 20px">
+      <van-image width="50vw" height="50vw" :src="data.downloadUrl" style="margin-top: 20px">
         <template v-slot:loading>
           <van-loading type="spinner" size="20" />
         </template>
         <template v-slot:error>加载失败</template>
       </van-image>
-      <p class="image-item-title" v-text="imageTypeValueLabel[data.contact_type]" style="width: 100%"></p>
+      <p class="image-item-title" v-text="imageTypeValueLabel[data.contactType]" style="width: 100%"></p>
     </div>
   </section>
 
